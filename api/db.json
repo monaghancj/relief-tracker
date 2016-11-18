@@ -1,0 +1,14 @@
+{
+  "persons": [
+    {
+      "firstName": "Bob",
+      "lastName": "Marley"
+    },
+    {
+      "firstName": "Bob",
+      "lastName": "Burnquist"
+    }
+  ],
+  "efforts": [],
+  "locations": []
+}
