@@ -18,7 +18,11 @@ const Persons = React.createClass({
   },
   render(){
     const listPerson = person =>
-      <li>{person.firstName + ' ' + person.lastName}</li>
+      <li key={person.id}>
+        <Link to={`/persons/${person.id}/show`}>
+          {person.firstName + ' ' + person.lastName}
+        </Link>
+      </li>
     return (
       <div>
         <h3>To Do: Persons List</h3>
