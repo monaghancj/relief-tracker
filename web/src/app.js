@@ -7,11 +7,13 @@ const { BrowserRouter, Link, Match } = require('react-router')
 const App = React.createClass({
   render() {
     return (
-      <div>
-        <h1>Hello React World</h1>
-        <Home />
-        <About />
-      </div>
+      <BrowserRouter>
+        <div>
+          <Match exactly pattern="/" component={Home} />
+          <Match exactly pattern="/about" component={About} />
+
+        </div>
+      </BrowserRouter>
     )
   }
 })
