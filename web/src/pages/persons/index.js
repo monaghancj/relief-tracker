@@ -8,7 +8,7 @@ const Persons = React.createClass({
     }
   },
   componentDidMount() {
-    this.props.allDocs((err, persons) => {
+    this.props.allDocs("persons", (err, persons) => {
       if (err) return console.log(err.message)
       this.setState({persons})
     })
@@ -28,7 +28,7 @@ const Persons = React.createClass({
       </li>
     return (
       <div>
-        <h3>To Do: Persons List</h3>
+        <h3>Persons List</h3>
         <Link to="/persons/new"> New Person </Link>
         <ul>
           { this.state.persons.map(listPerson) }

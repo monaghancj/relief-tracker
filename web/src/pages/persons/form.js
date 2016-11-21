@@ -5,20 +5,19 @@ const { Link, Redirect } = require('react-router')
 const PersonForm = React.createClass({
   getInitialState: function(){
     return {
-      firstName: 'Rick',
-      lastName: 'Sanchez',
-      email: 'rick&morty@cc.com',
-      phone: '8907128904',
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone: '',
       success: false
     }
   },
   componentDidMount(){
     if (this.props.params.id) {
-      xhr.get('http://localhost:4000/persons', + this.props.params.id, {
-        json: true
-      }, (err, res, person) => {
+      xhr.get('http://localhost:4000/persons/' +
+      this.props.params.id, {json: true }, (err, res, person) => {
         if (err) return console.log(err.message)
-        this.setState({ person })
+        this.setState( person )
       })
     }
   },
@@ -32,7 +31,7 @@ const PersonForm = React.createClass({
   handleSubmit(e) {
    e.preventDefault()
    if (this.state.id) {
-     xhr.put('http://localhost:4000/persons' + this.state.id, {
+     xhr.put('http://localhost:4000/persons/' + this.state.id, {
        json: this.state
      }, (err, res, body) => {
          if (err) return console.log(err.message)
@@ -56,7 +55,7 @@ const PersonForm = React.createClass({
           : null
         }
         { this.state.success && !this.state.id ?
-          <Redirect to={`/persons/`} />
+          <Redirect to={`/persons`} />
           : null
         }
         <h3> New Person Form </h3>

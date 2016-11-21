@@ -7,6 +7,8 @@ const Persons = require('./pages/persons/index')
 const Person = require('./pages/persons/show')
 const PersonForm = require('./pages/persons/form')
 const Efforts = require('./pages/efforts/index')
+const Effort = require('./pages/efforts/show')
+const EffortForm = require('./pages/efforts/form')
 
 const { BrowserRouter, Match, Miss, Link } = require('react-router')
 
@@ -29,7 +31,11 @@ const App = React.createClass({
           <Match pattern="/persons/:id/show" component={Service(Person)} />
           <Match pattern="/persons/:id/edit" component={PersonForm} />
           <Match exactly pattern="/persons/new" component={PersonForm} />
-          <Match exactly pattern="/efforts" component={Efforts} />
+          <Match exactly pattern="/efforts" component={Service(Efforts)} />
+          <Match pattern="/efforts/:id/show" component={Service(Effort)} />
+          <Match exactly pattern="/efforts/new" component={EffortForm} />
+          <Match pattern="/efforts/:id/edit" component={EffortForm} />
+
         </div>
       </BrowserRouter>
     )

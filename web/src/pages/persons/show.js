@@ -10,11 +10,10 @@ const Person = React.createClass({
     }
   },
   componentDidMount() {
-    this.props.get(this.props.params.id, (err, person) => {
+    this.props.get("persons", this.props.params.id, (err, person) => {
       if (err) return console.log(err.message)
       this.setState({person})
     })
-
     // xhr.get('http://localhost:4000/persons/' + this.props.params.id,
     // { json: true },
     // (err, response, person) => {
@@ -26,7 +25,7 @@ const Person = React.createClass({
   handleRemove(e){
     e.preventDefault()
     if (confirm('Are you sure?')) {
-      this.props.remove(this.props.params.id, (err, body) => {
+      this.props.remove("persons", this.props.params.id, this.state.person, (err, body) => {
         if (err) return console.log(err.message)
         this.setState({removed: true})
       })
@@ -43,6 +42,8 @@ const Person = React.createClass({
       <div>
         { this.state.removed ? <Redirect to="/persons"/> : null }
         <h3> {this.state.person.firstName + ' ' + this.state.person.lastName} </h3>
+        <p>{this.state.person.email}</p>
+        <p>{this.state.person.phone}</p>
         <Link to={`/persons/${this.state.person.id}/edit`}>Edit</Link>
         <button onClick={this.handleRemove}>Remove </button>
         <Link to={"/persons"}>Return</Link>
