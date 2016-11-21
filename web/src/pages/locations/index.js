@@ -23,7 +23,7 @@ const Locations = React.createClass({
     return (
       <div>
         <h1>Locations</h1>
-        <Link to="/locations/new"> New Effort </Link>
+        <Link to="/locations/new"> New Location </Link>
         <ul>
           { this.state.locations.map(listLocations) }
         </ul>

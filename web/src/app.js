@@ -38,8 +38,8 @@ const App = React.createClass({
 
           <Match exactly pattern="/efforts" component={Service(Efforts)} />
           <Match pattern="/efforts/:id/show" component={Service(Effort)} />
-          <Match exactly pattern="/efforts/new" component={EffortForm} />
-          <Match pattern="/efforts/:id/edit" component={EffortForm} />
+          <Match exactly pattern="/efforts/new" component={Service(EffortForm)} />
+          <Match pattern="/efforts/:id/edit" component={Service(EffortForm)} />
 
           <Match exactly pattern="/locations" component={Service(Locations)} />
           <Match pattern="/locations/:id/show" component={Service(Location)} />

@@ -1,6 +1,7 @@
 const React = require('react')
 const xhr = require('xhr')
 const { Link, Redirect } = require('react-router')
+const Select = require('react-select')
 
 const EffortForm = React.createClass({
   getInitialState: function(){
@@ -11,6 +12,8 @@ const EffortForm = React.createClass({
       start: '',
       end: '',
       organizationID: '',
+      team: [],
+      options: [],
       success: false
     }
   },
@@ -22,6 +25,14 @@ const EffortForm = React.createClass({
         this.setState( effort )
       })
     }
+    this.props.allDocs("persons", (err, team) => {
+      var array = []
+      team.map(member => {
+        var name = member.firstName + ' ' + member.lastName
+        array.push({value: member.firstName, label: name})
+      })
+      this.setState({team: team, options:array})
+    })
   },
   handleChange(field) {
     return e => {
@@ -32,7 +43,6 @@ const EffortForm = React.createClass({
   },
   handleSubmit(e) {
    e.preventDefault()
-   console.log('ID: ' + this.state.id)
    if (this.state.id) {
      xhr.put('http://localhost:4000/efforts/' + this.state.id, {
        json: this.state
@@ -83,10 +93,10 @@ const EffortForm = React.createClass({
           <div>
             <label>Description</label>
             <input
-              onChange={this.handleChange('description')}
-              value={this.state.description}
+              onChange={this.handleChange('desc')}
+              value={this.state.desc}
               type="text"
-              name="description"
+              name="desc"
             />
           </div>
           <div>
@@ -117,8 +127,25 @@ const EffortForm = React.createClass({
             />
           </div>
           <div>
-            <button>Create Relief Effort</button>
-            <Link to="/efforts"> Cancel </Link>
+            {JSON.stringify(this.state.team)}
+
+            <Select
+              multi={true}
+              name="form-field-name"
+              value="Add Member"
+              // options={[
+              //     { value: 'one', label: 'One' },
+              //     { value: 'two', label: 'Two' }
+              // ]}
+              options={this.state.options}
+              onChange={val => console.log(val)}
+            />
+          </div>
+          <div>
+            <a onClick={this.handleSubmit} className="f6 grow link dim br-pill ba bw1 ph3 pv2 mb2 dib black" href="#0">
+              Create Relief Effort</a>
+            <Link to="/efforts"><a className="f6 grow link dim br-pill ba bw1 ph3 pv2 mb2 dib black" href="#0">
+               Cancel </a></Link>
           </div>
         </form>
 

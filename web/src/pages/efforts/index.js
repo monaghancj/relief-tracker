@@ -29,7 +29,6 @@ const Efforts = React.createClass({
           </ul>
         <Link to="/">Home</Link>
       </div>
-
     )
   }
 })

@@ -5,7 +5,7 @@ const Home = React.createClass({
   render(){
     return (
       <div>
-        <h3>Home</h3>
+        <h1>Relief Tracker</h1>
         <ul>
           <li><Link to="/about">About</Link></li>
           <li><Link to="/persons">Persons</Link></li>

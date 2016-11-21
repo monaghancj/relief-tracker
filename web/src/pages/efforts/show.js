@@ -6,6 +6,7 @@ const Effort = React.createClass({
   getInitialState: function() {
     return {
       effort: {},
+      people: [],
       removed: false
     }
   },
@@ -25,19 +26,24 @@ const Effort = React.createClass({
     }
   },
   render() {
+
     return (
       <div>
         { this.state.removed ? <Redirect to="/efforts"/> : null }
-        <h1>Effort Here</h1>
-        <h3>{this.state.effort.name}</h3>
-        <p>{this.state.effort.desc}</p>
-        <p>{this.state.effort.start}</p>
-        <p>{this.state.effort.end}</p>
-        <p>{this.state.effort.phase}</p>
-        <p>{this.state.effort.id}</p>
-        <Link to={`/efforts/${this.state.effort.id}/edit`}>Edit</Link>
-        <button onClick={this.handleRemove}>Remove </button>
-        <Link to={"/efforts"}>Return</Link>
+        <h1>{this.state.effort.name}</h1>
+        <p>Goal: {this.state.effort.desc}</p>
+        <p>Start Date: {this.state.effort.start}</p>
+        <p>End Date: {this.state.effort.end}</p>
+        <p>Phase: {this.state.effort.phase}</p>
+        <p>People: {JSON.stringify(this.state.people)}</p>
+        <div>
+          <a className="f6 grow link dim br-pill ba bw1 ph3 pv2 mb2 dib black" href="#0">
+            <Link to={`/efforts/${this.state.effort.id}/edit`}>Edit</Link></a>
+          <a className="f6 grow link dim br-pill ba bw1 ph3 pv2 mb2 dib black" href="#0" onClick={this.handleRemove}>
+            Remove </a>
+          <a className="f6 grow link dim br-pill ba bw1 ph3 pv2 mb2 dib black" href="#0">
+            <Link to={"/efforts"}>Return</Link></a>
+        </div>
       </div>
     )
   }
