@@ -14,6 +14,15 @@ const EffortForm = React.createClass({
       success: false
     }
   },
+  componentDidMount(){
+    if (this.props.params.id) {
+      xhr.get('http://localhost:4000/efforts/' +
+      this.props.params.id, {json: true }, (err, res, effort) => {
+        if (err) return console.log(err.message)
+        this.setState( effort )
+      })
+    }
+  },
   handleChange(field) {
     return e => {
       const newState = {}

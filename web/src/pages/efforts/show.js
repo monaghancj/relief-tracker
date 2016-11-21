@@ -34,6 +34,7 @@ const Effort = React.createClass({
         <p>{this.state.effort.start}</p>
         <p>{this.state.effort.end}</p>
         <p>{this.state.effort.phase}</p>
+        <p>{this.state.effort.id}</p>
         <Link to={`/efforts/${this.state.effort.id}/edit`}>Edit</Link>
         <button onClick={this.handleRemove}>Remove </button>
         <Link to={"/efforts"}>Return</Link>

@@ -11,7 +11,6 @@ const Efforts = React.createClass({
     this.props.allDocs("efforts", (err, efforts) => {
       if (err) return console.log(err.message)
       this.setState({efforts})
-      console.log("Efforts: " + JSON.stringify(efforts))
     })
   },
   render(){

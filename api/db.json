@@ -57,16 +57,47 @@
       "id": 4
     },
     {
-      "name": "Teddy Bears for Bosnians",
+      "name": "Teddy Bear Bosnians",
       "phase": "started",
       "desc": "",
       "start": "10-10-2016",
-      "end": "1-01-2017",
-      "organizationID": "HibbenChurch",
+      "end": "01-01-2017",
+      "organizationID": "ChristChurch",
       "success": false,
-      "description": "Help Bosnians vercome hard times by sending Christmas gifts",
+      "description": "Help troubled bosnians by sendingChristmas gifts ",
       "id": 5
+    },
+    {
+      "name": "Coding With Cam",
+      "phase": "started",
+      "desc": "",
+      "start": "11-11-2016",
+      "end": "never",
+      "organizationID": "CamsKillerCodingKids",
+      "success": false,
+      "description": "Help teach kids arund the world to code",
+      "id": "8"
     }
   ],
-  "locations": []
+  "locations": [
+    {
+      "id": 1,
+      "name": "Charleston, South Carolina",
+      "lat": "32.7765",
+      "lng": "79.9311"
+    },
+    {
+      "id": 2,
+      "name": "Princeville, Kauai, Hawaii",
+      "lat": "22.2236",
+      "lng": "159.4853"
+    },
+    {
+      "name": "Jacksonville, Florida",
+      "lat": "30.3322",
+      "lng": "81.6557",
+      "success": false,
+      "id": "4"
+    }
+  ]
 }
