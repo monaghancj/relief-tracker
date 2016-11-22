@@ -42,8 +42,8 @@ const Person = React.createClass({
       <div>
         { this.state.removed ? <Redirect to="/persons"/> : null }
         <h3> {this.state.person.firstName + ' ' + this.state.person.lastName} </h3>
-        <p>{this.state.person.email}</p>
-        <p>{this.state.person.phone}</p>
+        <p><span className="green">Email: </span>{this.state.person.email}</p>
+        <p><span className="green">Phone: </span>{this.state.person.phone}</p>
         <Link to={`/persons/${this.state.person.id}/edit`}>Edit</Link>
         <button onClick={this.handleRemove}>Remove </button>
         <Link to={"/persons"}>Return</Link>

@@ -12,15 +12,19 @@ const EffortForm = React.createClass({
       start: '',
       end: '',
       organizationID: '',
-      team: [],
-      options: [],
+      location: {},
+      locationLookUp: [],
+      locationOptions: [],
+      team: [],         //Members added through select
+      teamOptions: [],  //Formatted team name first last for viewing in select
+      teamLookUp: [],   //JSON formatted team as gotten in allDocs
       success: false
     }
   },
+
   componentDidMount(){
     if (this.props.params.id) {
-      xhr.get('http://localhost:4000/efforts/' +
-      this.props.params.id, {json: true }, (err, res, effort) => {
+      this.props.get(this.props.params.id, (err, effort) => {
         if (err) return console.log(err.message)
         this.setState( effort )
       })
@@ -29,11 +33,19 @@ const EffortForm = React.createClass({
       var array = []
       team.map(member => {
         var name = member.firstName + ' ' + member.lastName
-        array.push({value: member.firstName, label: name})
+        array.push({value: name, id:member.id, label: name})
       })
-      this.setState({team: team, options:array})
+      this.setState({teamLookUp: team, teamOptions:array})
+    })
+    this.props.allDocs("locations", (err, locations) => {
+      var array = []
+      locations.map(local => {
+        array.push({value: local.name, id:local.id, label: local.name})
+      })
+      this.setState({locationLookUp: locations, locationOptions:array})
     })
   },
+
   handleChange(field) {
     return e => {
       const newState = {}
@@ -41,6 +53,7 @@ const EffortForm = React.createClass({
       this.setState(newState)
     }
   },
+
   handleSubmit(e) {
    e.preventDefault()
    if (this.state.id) {
@@ -59,7 +72,20 @@ const EffortForm = React.createClass({
      })
    }
   },
+
   render() {
+    const handleSelectTeam = val => {
+      var array = this.state.team
+      array.push(val[0])
+      this.setState({team:array})
+    }
+    const teamMapping = member =>
+      <li>{member.value}</li>
+    const handleSelectLocation = locationIn => {
+      var location = locationIn[0]
+      this.setState({location})
+    }
+
     return (
       <div>
         { this.state.success && this.state.id ?
@@ -70,11 +96,12 @@ const EffortForm = React.createClass({
           <Redirect to={`/efforts`} />
           : null
         }
-        <h3> New Relief Effort </h3>
+        <h1 className="helvetica gray fw1"> New Relief Effort </h1>
         <form onSubmit={this.handleSubmit}>
           <div>
-            <label>Name</label>
+            <label className="green">Name </label>
             <input
+              className="br2 ba b--light-silver mb2"
               onChange={this.handleChange('name')}
               value={this.state.name}
               type="text"
@@ -82,8 +109,9 @@ const EffortForm = React.createClass({
             />
           </div>
           <div>
-            <label>Phase</label>
+            <label className="green">Phase </label>
             <input
+              className="br2 ba b--light-silver mb2"
               onChange={this.handleChange('phase')}
               value={this.state.phase}
               type="text"
@@ -91,8 +119,9 @@ const EffortForm = React.createClass({
             />
           </div>
           <div>
-            <label>Description</label>
-            <input
+            <label className="v-top green">Description </label>
+            <textarea
+              className="br2 ba b--light-silver mb2"
               onChange={this.handleChange('desc')}
               value={this.state.desc}
               type="text"
@@ -100,8 +129,9 @@ const EffortForm = React.createClass({
             />
           </div>
           <div>
-            <label>Start</label>
+            <label className="green"> Start </label>
             <input
+              className="br2 ba b--light-silver mb2"
               onChange={this.handleChange('start')}
               value={this.state.start}
               type="text"
@@ -109,8 +139,9 @@ const EffortForm = React.createClass({
             />
           </div>
           <div>
-            <label>End</label>
+            <label className="green">End </label>
             <input
+              className="br2 ba b--light-silver mb2"
               onChange={this.handleChange('end')}
               value={this.state.end}
               type="text"
@@ -118,33 +149,44 @@ const EffortForm = React.createClass({
             />
           </div>
           <div>
-            <label>Organization ID</label>
+            <label className="green">Organization ID </label>
             <input
+              className="br2 ba b--light-silver mb2"
               onChange={this.handleChange('organizationID')}
               value={this.state.organizationID}
               type="text"
               name="organizationID"
             />
           </div>
-          <div>
-            {JSON.stringify(this.state.team)}
-
+          <div className="bb b--green">
+            <p className="green"> Team:</p>
+            <ul>
+              {this.state.team.map(teamMapping)}
+            </ul>
             <Select
+              className="br2 ba b--light-silver mb3"
               multi={true}
-              name="form-field-name"
-              value="Add Member"
-              // options={[
-              //     { value: 'one', label: 'One' },
-              //     { value: 'two', label: 'Two' }
-              // ]}
-              options={this.state.options}
-              onChange={val => console.log(val)}
+              name="team-members-select"
+              value="Add-Member"
+              options={this.state.teamOptions}
+              onChange={handleSelectTeam}
             />
           </div>
           <div>
-            <a onClick={this.handleSubmit} className="f6 grow link dim br-pill ba bw1 ph3 pv2 mb2 dib black" href="#0">
-              Create Relief Effort</a>
-            <Link to="/efforts"><a className="f6 grow link dim br-pill ba bw1 ph3 pv2 mb2 dib black" href="#0">
+            <p className="green">Location: <span className="black">{this.state.location.value}</span></p>
+            <Select
+              className="br2 ba b--light-silver mb2"
+              multi={true}
+              name="location-select"
+              value="Add-Location"
+              options={this.state.locationOptions}
+              onChange={handleSelectLocation}
+            />
+          </div>
+          <div>
+            <a onClick={this.handleSubmit} className="f6 grow link dim br-pill ba bw1 ph3 pv2 ma2 dib gray" href="#0">
+              Submit Relief Effort</a>
+            <Link to="/efforts"><a className="f6 grow link dim br-pill ba bw1 ph3 pv2 mb2 dib gray" href="#0">
                Cancel </a></Link>
           </div>
         </form>

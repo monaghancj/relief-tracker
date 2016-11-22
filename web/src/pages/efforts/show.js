@@ -26,23 +26,27 @@ const Effort = React.createClass({
     }
   },
   render() {
-
+    const teamMapping = member =>
+      <li>{member.value}</li>
     return (
       <div>
         { this.state.removed ? <Redirect to="/efforts"/> : null }
-        <h1>{this.state.effort.name}</h1>
-        <p>Goal: {this.state.effort.desc}</p>
-        <p>Start Date: {this.state.effort.start}</p>
-        <p>End Date: {this.state.effort.end}</p>
-        <p>Phase: {this.state.effort.phase}</p>
-        <p>People: {JSON.stringify(this.state.people)}</p>
+        <h1 className="helvetica gray fw1">{this.state.effort.name}</h1>
+        <p><span className="green">Goal:</span> {this.state.effort.desc}</p>
+        <p><span className="green">Start Date:</span>  {this.state.effort.start}</p>
+        <p><span className="green">End Date:</span>  {this.state.effort.end}</p>
+        <p><span className="green">Phase:</span>  {this.state.effort.phase}</p>
+        <p><span className="green">Team:</span> </p>
+        <ul>
+          { (this.state.effort.team) ? this.state.effort.team.map(teamMapping) : null }
+        </ul>
         <div>
-          <a className="f6 grow link dim br-pill ba bw1 ph3 pv2 mb2 dib black" href="#0">
-            <Link to={`/efforts/${this.state.effort.id}/edit`}>Edit</Link></a>
-          <a className="f6 grow link dim br-pill ba bw1 ph3 pv2 mb2 dib black" href="#0" onClick={this.handleRemove}>
-            Remove </a>
-          <a className="f6 grow link dim br-pill ba bw1 ph3 pv2 mb2 dib black" href="#0">
-            <Link to={"/efforts"}>Return</Link></a>
+          <a className="f6 grow link dim br-pill ba bw1 ph3 pv2 mb2 dib silver mr2" href="#0">
+            <Link to={`/efforts/${this.state.effort.id}/edit`} className="no-underline gray">Edit</Link></a>
+          <a className="f6 grow link dim br-pill ba bw1 ph3 pv2 mb2 dib silver mr2" href="#0" onClick={this.handleRemove}>
+            <span className="gray">Remove</span> </a>
+          <a className="f6 grow link dim br-pill ba bw1 ph3 pv2 mb2 dib silver" href="#0">
+            <Link to={"/efforts"} className="no-underline gray">Return</Link></a>
         </div>
       </div>
     )

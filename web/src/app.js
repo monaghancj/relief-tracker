@@ -26,7 +26,7 @@ const App = React.createClass({
   render() {
     return (
       <BrowserRouter>
-        <div>
+        <div className="mw5 mw7-ns center pa3 ph5-ns">
           <Miss component={NoMatch} />
           <Match exactly pattern="/" component={Home} />
           <Match pattern="/about" component={About} />

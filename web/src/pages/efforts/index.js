@@ -22,7 +22,7 @@ const Efforts = React.createClass({
       </li>
     return (
       <div>
-        <h3>Efforts List</h3>
+        <h1 className="helvetica gray fw1 f-subheadline">Efforts List</h1>
           <Link to="/efforts/new"> New Effort </Link>
           <ul>
             { this.state.efforts.map(listEfforts) }
