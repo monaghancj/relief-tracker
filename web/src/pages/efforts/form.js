@@ -178,15 +178,15 @@ const EffortForm = React.createClass({
               className="br2 ba b--light-silver mb2"
               multi={true}
               name="location-select"
-              value="Add-Location"
+              value={this.state.location.name}
               options={this.state.locationOptions}
               onChange={handleSelectLocation}
             />
           </div>
           <div>
-            <a onClick={this.handleSubmit} className="f6 grow link dim br-pill ba bw1 ph3 pv2 ma2 dib gray" href="#0">
+            <a onClick={this.handleSubmit} className="f6 grow link dim br-pill ba bw1 ph3 pv2 ma2 dib gray hover-green" href="#0">
               Submit Relief Effort</a>
-            <Link to="/efforts"><a className="f6 grow link dim br-pill ba bw1 ph3 pv2 mb2 dib gray" href="#0">
+            <Link to="/efforts"><a className="f6 grow link dim br-pill ba bw1 ph3 pv2 mb2 dib gray hover-red" href="#0">
                Cancel </a></Link>
           </div>
         </form>

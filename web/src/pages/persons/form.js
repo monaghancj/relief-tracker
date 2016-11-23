@@ -58,11 +58,12 @@ const PersonForm = React.createClass({
           <Redirect to={`/persons`} />
           : null
         }
-        <h3> New Person Form </h3>
+        <h1 className="helvetica gray fw1"> New Person Form </h1>
         <form onSubmit={this.handleSubmit}>
           <div>
             <label>First Name </label>
             <input
+              className="br2 ba b--light-silver mb2"
               onChange={this.handleChange('firstName')}
               value={this.state.firstName}
               type="text"
@@ -72,6 +73,7 @@ const PersonForm = React.createClass({
           <div>
             <label>Last Name </label>
             <input
+              className="br2 ba b--light-silver mb2"
               onChange={this.handleChange('lastName')}
               value={this.state.lastName}
               type="text"
@@ -81,6 +83,7 @@ const PersonForm = React.createClass({
           <div>
             <label>Email </label>
             <input
+              className="br2 ba b--light-silver mb2"
               onChange={this.handleChange('email')}
               value={this.state.email}
               type="text"
@@ -90,6 +93,7 @@ const PersonForm = React.createClass({
           <div>
             <label>Phone </label>
             <input
+              className="br2 ba b--light-silver mb2"
               onChange={this.handleChange('phone')}
               value={this.state.phone}
               type="text"
@@ -97,8 +101,8 @@ const PersonForm = React.createClass({
             />
           </div>
           <div>
-            <button>Create Person</button>
-            <Link to="/persons"> Cancel </Link>
+            <button className="f6 grow link dim br-pill ba bw1 ph3 pv2 mb2 dib silver hover-green" ><span>Create Person</span></button>
+            <Link className="f6 grow link dim br-pill ba bw1 ph3 pv2 mb2 dib silver hover-red" to="/persons"> <span >Cancel</span></Link>
           </div>
         </form>
       </div>

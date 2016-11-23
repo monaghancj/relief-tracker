@@ -1,6 +1,7 @@
 const React = require('react')
 const xhr = require('xhr')
 const { Link, Redirect } = require('react-router')
+const R = require('ramda')
 
 const Effort = React.createClass({
   getInitialState: function() {
@@ -25,9 +26,28 @@ const Effort = React.createClass({
       })
     }
   },
+  removeMember (member) {
+    console.log('remove')
+    return (e) => {
+      e.preventDefault()
+      var array = []
+      R.map(m => array.push(m), this.state.effort.team)
+      for (var i=0; i < array.length; i++) {
+        if (array[i].id === member.id) {
+          array.splice(i, 1)
+        }
+      }
+      console.log(this.state.effort.team)
+      console.log(array)
+      this.setState({team: array})
+    }
+  },
   render() {
     const teamMapping = member =>
-      <li>{member.value}</li>
+      <li>
+        {member.value}
+        <button className="f6 grow link dim br-pill ba bw1 ph3 pv2 mb2 dib hover-red" onClick={this.removeMember(member)}><span className="dark-red">X</span></button>
+      </li>
     return (
       <div>
         { this.state.removed ? <Redirect to="/efforts"/> : null }
@@ -40,13 +60,14 @@ const Effort = React.createClass({
         <ul>
           { (this.state.effort.team) ? this.state.effort.team.map(teamMapping) : null }
         </ul>
+        <p><span className="green">Location:</span> { (this.state.effort.location) ? this.state.effort.location.value : null } </p>
         <div>
-          <a className="f6 grow link dim br-pill ba bw1 ph3 pv2 mb2 dib silver mr2" href="#0">
-            <Link to={`/efforts/${this.state.effort.id}/edit`} className="no-underline gray">Edit</Link></a>
-          <a className="f6 grow link dim br-pill ba bw1 ph3 pv2 mb2 dib silver mr2" href="#0" onClick={this.handleRemove}>
-            <span className="gray">Remove</span> </a>
-          <a className="f6 grow link dim br-pill ba bw1 ph3 pv2 mb2 dib silver" href="#0">
-            <Link to={"/efforts"} className="no-underline gray">Return</Link></a>
+          <a className="f6 grow link dim br-pill ba bw1 ph3 pv2 mb2 dib silver mr2 hover-blue" href="#0">
+            <Link to={`/efforts/${this.state.effort.id}/edit`} className="no-underline gray hover-blue">Edit</Link></a>
+          <a className="f6 grow link dim br-pill ba bw1 ph3 pv2 mb2 dib silver mr2 hover-red" href="#0" onClick={this.handleRemove}>
+            <span className="">Remove</span> </a>
+          <a className="f6 grow link dim br-pill ba bw1 ph3 pv2 mb2 dib silver hover-green" href="#0">
+            <Link to={"/efforts"} className="no-underline gray hover-green">Return</Link></a>
         </div>
       </div>
     )

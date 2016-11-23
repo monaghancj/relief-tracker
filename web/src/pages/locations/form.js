@@ -56,11 +56,12 @@ const LocationForm = React.createClass({
           <Redirect to={`/locations`} />
           : null
         }
-        <h3> Location Form </h3>
+        <h1 className="helvetica gray fw1"> Location Form </h1>
         <form onSubmit={this.handleSubmit}>
           <div>
-            <label>Name</label>
+            <label>Name </label>
             <input
+              className="br2 ba b--light-silver mb2"
               onChange={this.handleChange('name')}
               value={this.state.name}
               type="text"
@@ -68,8 +69,9 @@ const LocationForm = React.createClass({
             />
           </div>
           <div>
-            <label>Latitude</label>
+            <label>Latitude </label>
             <input
+              className="br2 ba b--light-silver mb2"
               onChange={this.handleChange('lat')}
               value={this.state.lat}
               type="text"
@@ -77,8 +79,9 @@ const LocationForm = React.createClass({
             />
           </div>
           <div>
-            <label>Longitude</label>
+            <label>Longitude </label>
             <input
+              className="br2 ba b--light-silver mb2"
               onChange={this.handleChange('lng')}
               value={this.state.lng}
               type="text"
@@ -86,10 +89,9 @@ const LocationForm = React.createClass({
             />
           </div>
           <div>
-            <button>Create Location</button>
-            <Link to="/locations"> Cancel </Link>
+            <button className="no-underline f6 grow link dim br-pill ba bw1 ph3 pv2 mb2 dib dark-gray mr2 hover-green">Create Location</button>
+            <Link className="no-underline f6 grow link dim br-pill ba bw1 ph3 pv2 mb2 dib silver hover-red" to="/locations"> Cancel </Link>
           </div>
-          {JSON.stringify(this.state)}
         </form>
       </div>
     )

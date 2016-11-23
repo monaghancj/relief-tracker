@@ -11,7 +11,7 @@ const About = React.createClass({
         <h2 className="helvetica green fw1">Full Stack Practice</h2>
         <p>This relief tracker is designed as a practice in implementing a full stack application using Javascript. You will find Node, React, Express, CouchDB & MySQL.
           The backend is designed around Data Access Layer and API in order to easily implement and maintain CouchDB and MySQL databases.</p>
-        <Link to="/">Home</Link>
+        <Link className="f6 grow link dim br-pill ba bw1 ph3 pv2 mb2 dib silver" to="/">Home</Link>
       </div>
     )
   }

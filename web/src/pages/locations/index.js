@@ -16,18 +16,18 @@ const Locations = React.createClass({
   render() {
     const listLocations = location =>
       <li key={location.id}>
-        <Link to={`/locations/${location.id}/show`}>
+        <Link className="no-underline link dim mid-gray" to={`/locations/${location.id}/show`}>
           {location.name}
         </Link>
       </li>
     return (
       <div>
-        <h1>Locations</h1>
-        <Link to="/locations/new"> New Location </Link>
+        <h1 className="helvetica gray fw1 f-subheadline">Locations</h1>
+        <Link className="f6 grow link dim br-pill ba bw1 ph3 pv2 mb2 dib green" to="/locations/new"> New Location </Link>
         <ul>
           { this.state.locations.map(listLocations) }
         </ul>
-        <Link to="/">Home</Link>
+        <Link className="f6 grow link dim br-pill ba bw1 ph3 pv2 mb2 dib silver" to="/">Home</Link>
       </div>
     )
   }

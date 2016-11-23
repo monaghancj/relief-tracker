@@ -6,12 +6,10 @@ const Home = React.createClass({
     return (
       <div>
         <h1 className="helvetica gray fw1 f-headline">Relief Tracker</h1>
-        <ul>
-          <li><Link to="/about" className="no-underline black">About</Link></li>
-          <li><Link to="/persons" className="no-underline black">Persons</Link></li>
-          <li><Link to="/efforts" className="no-underline black">Efforts</Link></li>
-          <li><Link to="/locations" className="no-underline black">Locations</Link></li>
-        </ul>
+        <Link to="/about" className="no-underline f6 grow link dim br-pill ba bw1 ph3 pv2 mb2 dib silver ma1"><span className="green">About</span></Link>
+        <Link to="/persons" className="no-underline f6 grow link dim br-pill ba bw1 ph3 pv2 mb2 dib silver ma1"><span className="green">Persons</span></Link>
+        <Link to="/efforts" className="no-underline f6 grow link dim br-pill ba bw1 ph3 pv2 mb2 dib silver ma1"><span className="green">Efforts</span></Link>
+        <Link to="/locations" className="no-underline f6 grow link dim br-pill ba bw1 ph3 pv2 mb2 dib silver ma1"><span className="green">Locations</span></Link>
       </div>
 
     )

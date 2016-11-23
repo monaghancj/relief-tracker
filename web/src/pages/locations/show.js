@@ -28,12 +28,12 @@ const Location = React.createClass({
     return (
       <div>
         { this.state.removed ? <Redirect to="/locations"/> : null }
-        <h3>{this.state.location.name}</h3>
+        <h1 className="helvetica gray fw1">{this.state.location.name}</h1>
         <p><span className="green">Longitude:</span> {this.state.location.lng}</p>
         <p><span className="green">Latitude:</span> {this.state.location.lat}</p>
-        <Link to={`/locations/${this.state.location.id}/edit`}> Edit </Link>
-        <button onClick={this.handleRemove}>Remove </button>
-        <Link to={"/locations"}>Return</Link>
+        <Link className="no-underline f6 grow link dim br-pill ba bw1 ph3 pv2 mb2 dib silver" to={`/locations/${this.state.location.id}/edit`}> Edit </Link>
+        <button className="no-underline f6 grow link dim br-pill ba bw1 ph3 pv2 mb2 dib silver" onClick={this.handleRemove}>Remove </button>
+        <Link className="no-underline f6 grow link dim br-pill ba bw1 ph3 pv2 mb2 dib silver" to={"/locations"}>Return</Link>
       </div>
     )
   }
